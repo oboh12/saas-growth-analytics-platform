@@ -1,0 +1,47 @@
+{
+  "game": "Premier Tota",
+  "date_trained": "2025-11-30T13:57:09.278Z",
+  "positions": [
+    {
+      "mean": 11,
+      "median": 6,
+      "ema": 14.747724162551314,
+      "last": 40,
+      "count": 6
+    },
+    {
+      "mean": 21.666666666666668,
+      "median": 14,
+      "ema": 27.736776343190336,
+      "last": 66,
+      "count": 6
+    },
+    {
+      "mean": 18.333333333333332,
+      "median": 20.5,
+      "ema": 16.259058725531027,
+      "last": 3,
+      "count": 6
+    },
+    {
+      "mean": 34.5,
+      "median": 34.5,
+      "ema": 34.89623371214375,
+      "last": 38,
+      "count": 6
+    },
+    {
+      "mean": 41.333333333333336,
+      "median": 43.5,
+      "ema": 38.57267805081216,
+      "last": 23,
+      "count": 6
+    }
+  ],
+  "algorithm": "hybrid_median_ema_last_v1",
+  "weights": {
+    "median": 0.45,
+    "ema": 0.35,
+    "last": 0.2
+  }
+}

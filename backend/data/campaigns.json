@@ -1,0 +1,29 @@
+[
+  {
+    "campaignName": "New Feature Launch",
+    "emailsSent": 10000,
+    "emailsOpened": 4200,
+    "emailsClicked": 1100,
+    "conversions": 320,
+    "unsubscribes": 45,
+    "date": "2026-01-05"
+  },
+  {
+    "campaignName": "Holiday Promo",
+    "emailsSent": 15000,
+    "emailsOpened": 7800,
+    "emailsClicked": 2400,
+    "conversions": 950,
+    "unsubscribes": 110,
+    "date": "2026-01-15"
+  },
+  {
+    "campaignName": "Re-engagement Campaign",
+    "emailsSent": 8000,
+    "emailsOpened": 2100,
+    "emailsClicked": 600,
+    "conversions": 140,
+    "unsubscribes": 60,
+    "date": "2026-02-01"
+  }
+]

@@ -1,0 +1,5 @@
+[
+  { "signupMonth": "2025-11", "month1": 100, "month2": 80, "month3": 65 },
+  { "signupMonth": "2025-12", "month1": 120, "month2": 95, "month3": 70 },
+  { "signupMonth": "2026-01", "month1": 150, "month2": 120, "month3": 90 }
+]

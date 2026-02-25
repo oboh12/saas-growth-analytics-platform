@@ -1,0 +1,47 @@
+{
+  "game": "Premier Lucky",
+  "date_trained": "2025-11-30T13:57:08.722Z",
+  "positions": [
+    {
+      "mean": 13.5,
+      "median": 5.5,
+      "ema": 20.07484976497888,
+      "last": 59,
+      "count": 6
+    },
+    {
+      "mean": 24.333333333333332,
+      "median": 14.5,
+      "ema": 31.756649015291245,
+      "last": 77,
+      "count": 6
+    },
+    {
+      "mean": 22.166666666666668,
+      "median": 24,
+      "ema": 19.6864996727554,
+      "last": 8,
+      "count": 6
+    },
+    {
+      "mean": 32.333333333333336,
+      "median": 33.5,
+      "ema": 30.807937169036705,
+      "last": 22,
+      "count": 6
+    },
+    {
+      "mean": 38.833333333333336,
+      "median": 43,
+      "ema": 35.4229785208544,
+      "last": 12,
+      "count": 6
+    }
+  ],
+  "algorithm": "hybrid_median_ema_last_v1",
+  "weights": {
+    "median": 0.45,
+    "ema": 0.35,
+    "last": 0.2
+  }
+}

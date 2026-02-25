@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optional: ShadCN animations */
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "variantA": {
+    "emailsSent": 10000,
+    "emailsOpened": 3800,
+    "emailsClicked": 900,
+    "conversions": 250
+  },
+  "variantB": {
+    "emailsSent": 10000,
+    "emailsOpened": 4500,
+    "emailsClicked": 1400,
+    "conversions": 420
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "secure-ai-note-assistant",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "json2csv": "^6.0.0-alpha.2",
+    "mongoose": "^8.19.2",
+    "react-router-dom": "^7.13.0",
+    "recharts": "^3.7.0",
+    "sentiment": "^5.0.2"
+  }
+}
