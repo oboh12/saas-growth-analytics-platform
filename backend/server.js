@@ -3,13 +3,19 @@ import cors from "cors";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+// 🔹 Load environment variables
+dotenv.config();
 
 // 🔹 Import Routes
 import analyticsRoutes from "./routes/analytics.js";
 import kpiRoutes from "./routes/kpi.js";
 import abTestRoutes from "./routes/abTest.js";
 import cohortRoutes from "./routes/cohort.js";
-import timeSeriesRoutes from "./routes/timeSeries.js"; // ✅ NEW
+import timeSeriesRoutes from "./routes/timeSeries.js";
+import userRoutes from "./routes/user.js"; // ✅ NEW
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -17,6 +23,14 @@ const PORT = process.env.PORT || 5000;
 // Needed for __dirname in ES Modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// ---------------------------------------------------
+// 🔹 Connect to MongoDB
+// ---------------------------------------------------
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("✅ MongoDB Connected"))
+  .catch((err) => console.log("❌ DB Error:", err));
 
 // ---------------------------------------------------
 // 🔹 Middleware
@@ -31,7 +45,8 @@ app.use("/api/analytics", analyticsRoutes);
 app.use("/api/kpi", kpiRoutes);
 app.use("/api/abtest", abTestRoutes);
 app.use("/api/cohorts", cohortRoutes);
-app.use("/api/timeseries", timeSeriesRoutes); // ✅ NEW
+app.use("/api/timeseries", timeSeriesRoutes);
+app.use("/api/users", userRoutes); // ✅ NEW
 
 // ---------------------------------------------------
 // 🔹 Analyze Function (Prediction Engine)
@@ -55,7 +70,6 @@ const analyzeResults = (results) => {
     throw new Error("Invalid or empty game data");
   }
 
-  // Validate numbers range
   const invalidNumbers = allNumbers.filter((n) => n < 1 || n > 99);
   if (invalidNumbers.length > 0) {
     throw new Error(
@@ -154,6 +168,6 @@ app.get("/api/predict/:gameName", (req, res) => {
 // ---------------------------------------------------
 // 🔹 Start Server
 // ---------------------------------------------------
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`✅ Server running on port ${PORT}`);
 });
