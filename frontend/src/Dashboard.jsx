@@ -10,7 +10,7 @@ const Dashboard = () => {
         audience: "https://secure-ai-note-api",
       });
 
-      const res = await fetch("http://localhost:5000/secure-data", {
+      const res = await fetch("http://saas-growth-analytics-platform.onrender.com/secure-data", {
         headers: { Authorization: `Bearer ${token}` },
       });
 

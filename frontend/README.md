@@ -123,7 +123,7 @@ npm run dev
 ```
 
 Access the app at:  
-👉 **http://localhost:5173**
+👉 **http://saas-growth-analytics-platform.onrender.com**
 
 ---
 

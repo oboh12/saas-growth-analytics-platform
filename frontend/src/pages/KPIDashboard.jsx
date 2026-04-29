@@ -14,7 +14,7 @@ export default function KPIDashboard() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/kpi")
+    fetch("http://saas-growth-analytics-platform.onrender.com")
       .then((res) => res.json())
       .then((result) => setData(result))
       .catch((err) => console.error(err));

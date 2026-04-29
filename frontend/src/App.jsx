@@ -10,7 +10,7 @@ function LottoDashboard() {
   const analyzeGame = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:5000/api/predict/${gameName}`);
+      const res = await fetch(`http://saas-growth-analytics-platform.onrender.com/${gameName}`);
       const data = await res.json();
       setResult(data);
     } catch (err) {

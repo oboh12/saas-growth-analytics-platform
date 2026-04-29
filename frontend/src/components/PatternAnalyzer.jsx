@@ -27,7 +27,7 @@ const PatternAnalyzer = () => {
       const token = await getAccessTokenSilently();
 
       const res = await axios.post(
-        "http://localhost:5000/api/analyze-pattern",
+        "http://saas-growth-analytics-platform.onrender.com/analyze-pattern",
         { numbers: nums },
         {
           headers: {
