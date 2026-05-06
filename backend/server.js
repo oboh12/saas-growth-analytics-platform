@@ -15,12 +15,14 @@ import kpiRoutes from "./routes/kpi.js";
 import abTestRoutes from "./routes/abTest.js";
 import cohortRoutes from "./routes/cohort.js";
 import timeSeriesRoutes from "./routes/timeSeries.js";
-import userRoutes from "./routes/user.js"; // ✅ NEW
+import userRoutes from "./routes/user.js";
+import authRoutes from "./routes/auth.js";
+import domainRoutes from "./routes/domain.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Needed for __dirname in ES Modules
+// Fix __dirname for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -39,17 +41,26 @@ app.use(cors());
 app.use(express.json());
 
 // ---------------------------------------------------
+// 🔹 Test Route (VERY IMPORTANT FOR DEBUGGING)
+// ---------------------------------------------------
+app.get("/", (req, res) => {
+  res.send("🚀 API is running...");
+});
+
+// ---------------------------------------------------
 // 🔹 Mount Routes
 // ---------------------------------------------------
+app.use("/api/auth", authRoutes);
 app.use("/api/analytics", analyticsRoutes);
 app.use("/api/kpi", kpiRoutes);
 app.use("/api/abtest", abTestRoutes);
 app.use("/api/cohorts", cohortRoutes);
 app.use("/api/timeseries", timeSeriesRoutes);
-app.use("/api/users", userRoutes); // ✅ NEW
+app.use("/api/users", userRoutes);
+app.use("/api/domain", domainRoutes);
 
 // ---------------------------------------------------
-// 🔹 Analyze Function (Prediction Engine)
+// 🔹 Analyze Function
 // ---------------------------------------------------
 const analyzeResults = (results) => {
   let allNumbers = [];
@@ -76,8 +87,6 @@ const analyzeResults = (results) => {
       `Invalid numbers detected (must be 1-99): ${invalidNumbers.join(", ")}`
     );
   }
-
-  console.log("Loaded game data:", results);
 
   const totalCount = allNumbers.length;
   const sum = allNumbers.reduce((a, b) => a + b, 0);
@@ -119,7 +128,7 @@ const analyzeResults = (results) => {
 };
 
 // ---------------------------------------------------
-// 🔹 Route: /api/predict/:gameName
+// 🔹 Prediction Route
 // ---------------------------------------------------
 app.get("/api/predict/:gameName", (req, res) => {
   const { gameName } = req.params;
@@ -133,8 +142,6 @@ app.get("/api/predict/:gameName", (req, res) => {
     "game_data",
     `${normalizedName}.json`
   );
-
-  console.log("Looking for:", filePath);
 
   try {
     if (!fs.existsSync(filePath)) {
