@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import AnalyticsDashboard from "./pages/AnalyticsDashboard";
+import ProtectedRoute from "./components/ProtectedRoute"; // ✅ NEW
+import Dashboard from "./pages/Dashboard"; // ✅ MAKE SURE THIS FILE EXISTS
 
 function LottoDashboard() {
   const [gameName, setGameName] = useState("premier_tota");
@@ -77,30 +79,15 @@ function LottoDashboard() {
           </p>
 
           <div className="mt-3">
-            <p>
-              <strong>Total Numbers:</strong> {result.totalCount}
-            </p>
-            <p>
-              <strong>Sum:</strong> {result.sum}
-            </p>
-            <p>
-              <strong>Average:</strong> {result.average.toFixed(2)}
-            </p>
+            <p><strong>Total Numbers:</strong> {result.totalCount}</p>
+            <p><strong>Sum:</strong> {result.sum}</p>
+            <p><strong>Average:</strong> {result.average.toFixed(2)}</p>
           </div>
 
           <div className="mt-3">
-            <p>
-              <strong>🔥 Hot Numbers:</strong>{" "}
-              {result.hot.map((h) => h.num).join(", ")}
-            </p>
-            <p>
-              <strong>🌤️ Warm Numbers:</strong>{" "}
-              {result.warm.map((h) => h.num).join(", ")}
-            </p>
-            <p>
-              <strong>❄️ Cool Numbers:</strong>{" "}
-              {result.cool.map((h) => h.num).join(", ")}
-            </p>
+            <p><strong>🔥 Hot Numbers:</strong> {result.hot.map((h) => h.num).join(", ")}</p>
+            <p><strong>🌤️ Warm Numbers:</strong> {result.warm.map((h) => h.num).join(", ")}</p>
+            <p><strong>❄️ Cool Numbers:</strong> {result.cool.map((h) => h.num).join(", ")}</p>
           </div>
 
           <div className="mt-4 p-3 bg-gray-50 rounded-lg border">
@@ -123,6 +110,16 @@ export default function App() {
       <Routes>
         <Route path="/" element={<LottoDashboard />} />
         <Route path="/analytics" element={<AnalyticsDashboard />} />
+
+        {/* ✅ PROTECTED ROUTE ADDED */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );

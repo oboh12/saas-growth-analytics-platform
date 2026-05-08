@@ -1,27 +1,28 @@
-import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import api from "../lib/api";
 
-const Dashboard = () => {
-  const { getAccessTokenSilently } = useAuth0();
+export default function Dashboard() {
+  const [history, setHistory] = useState([]);
 
   useEffect(() => {
-    const fetchSecureData = async () => {
-      const token = await getAccessTokenSilently({
-        audience: "https://secure-ai-note-api",
-      });
-
-      const res = await fetch("http://saas-growth-analytics-platform.onrender.com/secure-data", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      const data = await res.json();
-      console.log(data);
+    const fetchHistory = async () => {
+      const res = await api.get("/api/domain/history");
+      setHistory(res.data);
     };
 
-    fetchSecureData();
-  }, [getAccessTokenSilently]);
+    fetchHistory();
+  }, []);
 
-  return <h1>Dashboard</h1>;
-};
+  return (
+    <div>
+      <h2>Your History</h2>
 
-export default Dashboard;
+      {history.map((item, index) => (
+        <div key={index}>
+          <p>{item.domain}</p>
+          <p>{item.score}</p>
+        </div>
+      ))}
+    </div>
+  );
+}

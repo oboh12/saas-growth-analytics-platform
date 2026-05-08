@@ -139,3 +139,9 @@ This project demonstrates business-aware data engineering capability suitable fo
 • Product Analytics  
 
 Built to simulate real-world Data Analyst workflows within a modern full-stack architecture.
+
+## 📸 Application Screenshots
+
+![Server Running](screenshots/Server-running.png)
+![API JSON Response](screenshots/API-JSON-response.png)
+![CSV Export](screenshots/CSV-export-file.png)
