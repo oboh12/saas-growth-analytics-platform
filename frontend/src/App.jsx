@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
 import AnalyticsDashboard from "./pages/AnalyticsDashboard";
-import ProtectedRoute from "./components/ProtectedRoute"; // ✅ NEW
-import Dashboard from "./pages/Dashboard"; // ✅ MAKE SURE THIS FILE EXISTS
+import Dashboard from "./pages/Dashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function LottoDashboard() {
   const [gameName, setGameName] = useState("premier_tota");
@@ -12,11 +13,13 @@ function LottoDashboard() {
   const analyzeGame = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`http://saas-growth-analytics-platform.onrender.com/${gameName}`);
+      const res = await fetch(
+        `http://saas-growth-analytics-platform.onrender.com/${gameName}`
+      );
       const data = await res.json();
       setResult(data);
     } catch (err) {
-      console.error(err);
+      console.error("Analyze error:", err);
     } finally {
       setLoading(false);
     }
@@ -28,18 +31,15 @@ function LottoDashboard() {
         🎯 Lotto Analyzer Dashboard
       </h1>
 
-      {/* Navigation */}
       <div className="mb-4">
-        <Link
-          to="/analytics"
-          className="text-indigo-600 font-semibold hover:underline"
-        >
+        <Link to="/analytics" className="text-indigo-600 font-semibold hover:underline">
           Go to Analytics Dashboard →
         </Link>
       </div>
 
       <div className="flex items-center space-x-3 mb-4">
         <label className="font-semibold">Select Game:</label>
+
         <select
           value={gameName}
           onChange={(e) => setGameName(e.target.value)}
@@ -68,9 +68,7 @@ function LottoDashboard() {
             {result.game.replace("_", " ")} Analysis
           </h2>
 
-          <p>
-            <strong>Date:</strong> {result.predictionDate}
-          </p>
+          <p><strong>Date:</strong> {result.predictionDate}</p>
           <p>
             <strong>Confidence:</strong>{" "}
             <span className="text-indigo-600 font-bold">
@@ -85,14 +83,14 @@ function LottoDashboard() {
           </div>
 
           <div className="mt-3">
-            <p><strong>🔥 Hot Numbers:</strong> {result.hot.map((h) => h.num).join(", ")}</p>
-            <p><strong>🌤️ Warm Numbers:</strong> {result.warm.map((h) => h.num).join(", ")}</p>
-            <p><strong>❄️ Cool Numbers:</strong> {result.cool.map((h) => h.num).join(", ")}</p>
+            <p><strong>🔥 Hot:</strong> {result.hot.map((h) => h.num).join(", ")}</p>
+            <p><strong>🌤️ Warm:</strong> {result.warm.map((h) => h.num).join(", ")}</p>
+            <p><strong>❄️ Cool:</strong> {result.cool.map((h) => h.num).join(", ")}</p>
           </div>
 
           <div className="mt-4 p-3 bg-gray-50 rounded-lg border">
             <p className="font-semibold text-indigo-700">
-              🎯 Predicted Next Numbers:
+              🎯 Predicted Numbers:
             </p>
             <p className="text-lg font-bold text-green-600">
               {result.prediction.join(", ")}
@@ -108,10 +106,15 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LottoDashboard />} />
-        <Route path="/analytics" element={<AnalyticsDashboard />} />
 
-        {/* ✅ PROTECTED ROUTE ADDED */}
+        {/* ✅ MAIN SAAS DASHBOARD (FIXED ENTRY POINT) */}
+        <Route path="/" element={<Dashboard />} />
+
+        {/* OPTIONAL MODULES */}
+        <Route path="/analytics" element={<AnalyticsDashboard />} />
+        <Route path="/lotto" element={<LottoDashboard />} />
+
+        {/* PROTECTED DASHBOARD (if still needed) */}
         <Route
           path="/dashboard"
           element={
@@ -120,6 +123,7 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+
       </Routes>
     </Router>
   );
