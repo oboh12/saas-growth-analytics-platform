@@ -107,14 +107,14 @@ export default function App() {
     <Router>
       <Routes>
 
-        {/* ✅ MAIN SAAS DASHBOARD (FIXED ENTRY POINT) */}
-        <Route path="/" element={<Dashboard />} />
+        {/* 🔥 DEPLOY TEST ROUTE */}
+        <Route path="/" element={<div>🔥 DEPLOY TEST SUCCESS</div>} />
 
         {/* OPTIONAL MODULES */}
         <Route path="/analytics" element={<AnalyticsDashboard />} />
         <Route path="/lotto" element={<LottoDashboard />} />
 
-        {/* PROTECTED DASHBOARD (if still needed) */}
+        {/* PROTECTED DASHBOARD */}
         <Route
           path="/dashboard"
           element={
