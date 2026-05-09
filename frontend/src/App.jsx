@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-import AnalyticsDashboard from "./pages/AnalyticsDashboard";
-import Dashboard from "./pages/Dashboard";
+import AnalyticsDashboard from "./pages/AnalyticsDashboard.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function LottoDashboard() {
@@ -32,7 +32,10 @@ function LottoDashboard() {
       </h1>
 
       <div className="mb-4">
-        <Link to="/analytics" className="text-indigo-600 font-semibold hover:underline">
+        <Link
+          to="/analytics"
+          className="text-indigo-600 font-semibold hover:underline"
+        >
           Go to Analytics Dashboard →
         </Link>
       </div>
@@ -69,6 +72,7 @@ function LottoDashboard() {
           </h2>
 
           <p><strong>Date:</strong> {result.predictionDate}</p>
+
           <p>
             <strong>Confidence:</strong>{" "}
             <span className="text-indigo-600 font-bold">
@@ -83,15 +87,27 @@ function LottoDashboard() {
           </div>
 
           <div className="mt-3">
-            <p><strong>🔥 Hot:</strong> {result.hot.map((h) => h.num).join(", ")}</p>
-            <p><strong>🌤️ Warm:</strong> {result.warm.map((h) => h.num).join(", ")}</p>
-            <p><strong>❄️ Cool:</strong> {result.cool.map((h) => h.num).join(", ")}</p>
+            <p>
+              <strong>🔥 Hot:</strong>{" "}
+              {result.hot.map((h) => h.num).join(", ")}
+            </p>
+
+            <p>
+              <strong>🌤️ Warm:</strong>{" "}
+              {result.warm.map((h) => h.num).join(", ")}
+            </p>
+
+            <p>
+              <strong>❄️ Cool:</strong>{" "}
+              {result.cool.map((h) => h.num).join(", ")}
+            </p>
           </div>
 
           <div className="mt-4 p-3 bg-gray-50 rounded-lg border">
             <p className="font-semibold text-indigo-700">
               🎯 Predicted Numbers:
             </p>
+
             <p className="text-lg font-bold text-green-600">
               {result.prediction.join(", ")}
             </p>
@@ -111,8 +127,15 @@ export default function App() {
         <Route path="/" element={<div>🔥 DEPLOY TEST SUCCESS</div>} />
 
         {/* OPTIONAL MODULES */}
-        <Route path="/analytics" element={<AnalyticsDashboard />} />
-        <Route path="/lotto" element={<LottoDashboard />} />
+        <Route
+          path="/analytics"
+          element={<AnalyticsDashboard />}
+        />
+
+        <Route
+          path="/lotto"
+          element={<LottoDashboard />}
+        />
 
         {/* PROTECTED DASHBOARD */}
         <Route
