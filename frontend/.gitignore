@@ -1,18 +1,31 @@
-# Node modules
+Node modules
+
 node_modules/
+backend/node_modules/
+frontend/node_modules/
 
-# Environment variables
+Environment variables
+
 .env
+.env.local
+backend/.env
+backend/.env.local
+frontend/.env
+frontend/.env.local
 
-# Logs
-logs
+Logs
+
+logs/
 *.log
 
-# Build output
+Build output
+
 dist/
 build/
+frontend/dist/
+backend/dist/
 
-# System files
+System files
+
 .DS_Store
 Thumbs.db
-
